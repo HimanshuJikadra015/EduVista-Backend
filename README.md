@@ -89,3 +89,90 @@ EduVista is a Learning Management System (LMS) that provides a secure and robust
 - **Response**: 200 OK with
   ```json
   { "message": "Registration successful" }
+
+#### POST /api/auth/login
+- Logs in the user and returns a JWT token.
+- **Request body**:
+  ```json
+  { "email": "user@example.com", "password": "password" }
+- **Response**: 200 OK with
+  ```json
+  { "token": "<JWT_TOKEN>" }
+
+#### POST /api/auth/google
+- Google OAuth login.
+- **Response**: 200 OK with
+  ```json
+  { "token": "<JWT_TOKEN>" }
+
+#### POST /api/auth/github
+- GitHub OAuth login.
+- **Response**: 200 OK with
+  ```json
+  { "token": "<JWT_TOKEN>" }
+
+### User Management (Admin-Only Routes)
+
+#### POST /api/admin/update-role/:id
+- Update the role of a user (admin or user).
+- Requires: isAuthenticated, authorizeRoles("admin")
+- **Request body**:
+  ```json
+  { "role": "admin" }
+- **Response**: 200 OK with
+  ```json
+  { "message": "User role updated successfully" }
+
+### Profile & Settings
+
+#### GET /api/profile
+- Fetch the authenticated user's profile.
+- Requires: isAuthenticated
+- **Response**: 200 OK with
+  ```json
+  { "user": { "email": "user@example.com", "role": "user" } }
+  
+#### PUT /api/profile/update
+- Update user details (email, password, etc.).
+- Requires: isAuthenticated
+- **Request body**:
+  ```json
+  { "email": "new-email@example.com", "password": "new-password" }
+- **Response**: 200 OK with
+  ```json
+  { "message": "Profile updated successfully" }
+
+### Admin-Only Routes
+
+#### GET /api/admin/users
+- List all users (admin only).
+- Requires: isAuthenticated, authorizeRoles("admin")
+- **Response**: 200 OK with
+  ```json
+  { "users": [...] }
+  
+#### DELETE /api/admin/delete-user/:id
+- Delete a user by ID (admin only).
+- Requires: isAuthenticated, authorizeRoles("admin")
+- **Response**: 200 OK with
+  ```json
+  { "message": "User deleted successfully" }
+
+### Email & Activation
+
+#### POST /api/auth/activate
+- Send an activation email to the user.
+- Requires: isAuthenticated
+- **Request body**:
+  ```json
+  { "email": "user@example.com" }
+- **Response**: 200 OK with
+  ```json
+  { "message": "Activation email sent" }
+
+## Security Best Practices
+- **Password Hashing:** Passwords are securely hashed before storing them in the database using bcrypt.
+- **JWT:** JSON Web Tokens are used for secure authentication and authorization.
+- **Role-Based Access Control:** Ensures that only users with appropriate roles (admin/user) can access specific routes.
+- **Email Activation:** Users must activate their accounts via a code sent to their email before logging in.
+
