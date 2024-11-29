@@ -1,114 +1,32 @@
-# EduVista Backend - Role-Based Access Control (RBAC) Implementation
+# EduVista - Backend
 
-## Description
+## Overview
 
-This is the backend part of the **EduVista** platform, which includes user authentication, authorization, and role-based access control (RBAC). The project demonstrates the ability to secure a web application by implementing secure user management and access control based on roles such as **Admin** and **User**. 
+EduVista is a Learning Management System (LMS) that provides a secure and robust platform for managing courses, students, and instructors. This backend API ensures that users can register, log in, and access their resources based on their roles (Admin, User).
 
-This project was built to demonstrate the implementation of role-based access control in a backend API, along with secure user registration, login, and role-based permissions.
+### Tech Stack:
+- **Backend**: Node.js with Express.js
+- **Database**: MongoDB (NoSQL)
+- **Authentication**: JWT (JSON Web Tokens) for secure session management
+- **Social Authentication**: Google and GitHub OAuth
+- **RBAC**: Role-Based Access Control (Admin, User)
+- **Email Service**: Nodemailer (Gmail SMTP) for user registration and activation
+- **Redis**: Session caching
+- **Cloud Storage**: Cloudinary for file uploads
+- **Environment Configuration**: `.env` file for managing sensitive information
 
-### Key Features:
-- **User Authentication** (JWT)
-- **Role-Based Access Control (RBAC)** (Admin and User roles)
-- **Admin Role for User Management**
-- **Protected Routes** for Admin users
-- **Password Hashing** (using bcrypt)
-- **MongoDB for data storage**
+---
 
-## Table of Contents
-- [Technologies Used](#technologies-used)
-- [Core Endpoints](#core-endpoints)
-- [Getting Started](#getting-started)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Environment Variables](#environment-variables)
-- [Security Features](#security-features)
-- [License](#license)
+## Installation
 
-## Technologies Used
-- **Node.js** - Backend JavaScript runtime
-- **Express.js** - Web framework for Node.js
-- **MongoDB** - Database for storing user data
-- **JWT** - For secure authentication and token management
-- **bcrypt** - For hashing passwords
-- **dotenv** - For managing environment variables
+### Prerequisites:
+1. Node.js >= 14.x
+2. MongoDB running (or a cloud database like MongoDB Atlas)
+3. Redis server running (or use Redis cloud services like Upstash)
 
-## Core Endpoints
-
-### User Authentication and Management:
-- **POST** `/api/users/register`: Registers a new user.
-  - Request body: `{ "username": "user1", "email": "user1@example.com", "password": "password123" }`
-  - Response: `201 Created`
-
-- **POST** `/api/users/login`: Logs in a user and returns a JWT token.
-  - Request body: `{ "email": "user1@example.com", "password": "password123" }`
-  - Response: `200 OK` with token `{ "token": "jwt_token" }`
-  
-- **PUT** `/api/users/:id/role`: Updates a user's role (Admin only).
-  - Request body: `{ "role": "admin" }`
-  - Response: `201 Created`
-
-### Protected Routes (with RBAC):
-- **GET** `/api/protected`: Accessible only by authenticated users.
-  - Requires JWT Token in the Authorization header.
-
-- **GET** `/api/admin-only`: Accessible only by users with the 'admin' role.
-  - This route is protected by RBAC and is accessible only by the Admin role.
-  - Response: `200 OK` with `{ "message": "Welcome, Admin!" }`
-
-## Getting Started
-
-### Prerequisites
-To run this project, you need the following:
-- **Node.js** (v16 or higher)
-- **MongoDB** (either local or MongoDB Atlas)
-- **Redis** (for session storage or caching)
-- **Gmail SMTP configuration** (for email functionality if using email-related features)
-
-### Installation
+### Steps to Run the Project:
 
 1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/yourusername/eduvista-backend.git
-    cd eduvista-backend
-    ```
-
-2. Install the dependencies:
-
-    ```bash
-    npm install
-    ```
-
-3. Set up environment variables. Create a `.env` file in the root directory and add your variables:
-
-    ```bash
-    PORT=8000
-    DB_URL='mongodb+srv://<username>:<password>@<cluster>.mongodb.net/EduVista'
-    JWT_SECRET='your_jwt_secret_key'
-    ACCESS_TOKEN_EXPIRE=3600
-    REFRESH_TOKEN_EXPIRE=86400
-    SMTP_HOST='smtp.gmail.com'
-    SMTP_PORT=465
-    SMTP_MAIL='your_email@gmail.com'
-    SMTP_PASSWORD='your_email_password'
-    ```
-
-4. Start the server:
-
-    ```bash
-    npm start
-    ```
-
-The server will run on `http://localhost:8000`.
-
-## Usage
-
-### Registering a New User
-To register a new user, send a `POST` request to `/api/users/register` with the following JSON payload:
-
-```json
-{
-  "username": "user1",
-  "email": "user1@example.com",
-  "password": "password123"
-}
+   ```bash
+   git clone https://github.com/your-repo/eduvista-backend.git
+   cd eduvista-backend
