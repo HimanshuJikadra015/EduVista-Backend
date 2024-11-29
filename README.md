@@ -76,3 +76,16 @@ EduVista is a Learning Management System (LMS) that provides a secure and robust
 
 ### Protected Routes:
 - Routes are secured using the isAuthenticated middleware to ensure the user is logged in, and the authorizeRoles middleware to ensure the user has the appropriate role. Admin-only routes require the admin role.
+
+## API Endpoints
+
+### User Authentication
+
+#### POST /api/auth/register
+- Registers a new user.
+- **Request body**:
+  ```json
+  { "email": "user@example.com", "password": "password" }
+- **Response**: 200 OK with
+  ```json
+  { "message": "Registration successful" }
