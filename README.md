@@ -58,3 +58,21 @@ EduVista is a Learning Management System (LMS) that provides a secure and robust
    ```bash
    npm start
 
+
+## Authentication & Authorization
+
+### JWT Authentication:
+- **Login**: After successful authentication, a JWT token is provided to the user. This token should be included in the headers of all subsequent requests to protected routes.
+- **Usage**: To access protected routes, include the token in the `Authorization` header:
+  ```bash
+  Authorization: Bearer <token>
+
+### Social Authentication:
+- **Google Auth**: Users can authenticate using Google.
+- **Github Auth**: Users can authenticate using GitHub.
+
+### Role-Based Access Control (RBAC):
+- Users are assigned roles (admin or user) during registration. Based on these roles, access to certain routes is allowed or restricted.
+
+### Protected Routes:
+- Routes are secured using the isAuthenticated middleware to ensure the user is logged in, and the authorizeRoles middleware to ensure the user has the appropriate role. Admin-only routes require the admin role.
