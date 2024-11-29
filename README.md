@@ -28,5 +28,33 @@ EduVista is a Learning Management System (LMS) that provides a secure and robust
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/eduvista-backend.git
-   cd eduvista-backend
+   git clone https://github.com/HimanshuJikadra015/EduVista-Backend.git
+   cd EduVista-Backend
+
+2. Install dependencies:
+   ```bash
+   npm install
+
+3. Create a .env file in the root of the project and add the following environment variables:
+   ```bash
+   PORT=8000
+   ORIGIN=http://localhost:3000/
+   NODE_ENV=development
+   DB_URL=mongodb://localhost:27017/eduvista
+   CLOUD_NAME=your-cloud-name
+   CLOUD_API_KEY=your-cloud-api-key
+   CLOUD_SECRET_KEY=your-cloud-secret-key
+   REDIS_URL=your-redis-url
+   ACTIVATION_SECRET=your-activation-secret
+   ACCESS_TOKEN=your-access-token-key
+   REFRESH_TOKEN=your-refresh-token-key
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=465
+   SMTP_SERVICE=gmail
+   SMTP_MAIL=your-email@gmail.com
+   SMTP_PASSWORD=your-email-password
+
+4. Start the server:
+   ```bash
+   npm start
+
